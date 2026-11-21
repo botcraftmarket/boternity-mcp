@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.boternity/boternity",
+  "title": "BOTERNITY",
+  "description": "Free MCP tools: read and watch web pages, audit MCP servers, data tools, agent notebooks, prompts.",
+  "version": "1.4.0",
+  "websiteUrl": "https://boternity.com",
+  "repository": {
+    "url": "https://github.com/botcraftmarket/boternity-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://boternity.com/api/public/v4/mcp"
+    }
+  ]
+}
