@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions and ideas
+    url: https://github.com/botcraftmarket/boternity-mcp/discussions
+    about: Ask how to use BOTERNITY, or share what you built with it.
+  - name: MCP Index score of your server
+    url: https://boternity.com/mcp-index/claim
+    about: Find your server, its score and its README badge. To be removed from the index, open an issue.

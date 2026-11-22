@@ -1,0 +1,23 @@
+name: Bug report
+description: A tool returns an error, a wrong result, or the server does not answer.
+labels: [bug]
+body:
+  - type: input
+    id: tool
+    attributes:
+      label: Tool or page
+      placeholder: e.g. get_exchange_rates, read_page, /mcp-index
+    validations:
+      required: true
+  - type: dropdown
+    id: door
+    attributes:
+      label: How you called it
+      options: [MCP client (Claude, Cursor, VS Code…), REST (POST /tools/…), A2A, Website]
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+      description: Paste the arguments you sent and the answer (remove any personal data).
+    validations:
+      required: true

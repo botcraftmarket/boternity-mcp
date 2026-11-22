@@ -1,0 +1,21 @@
+name: Suggest a data source
+description: A public dataset agents would need, that BOTERNITY could keep fresh.
+labels: [data source]
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Source (official URL)
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License or terms of reuse, if you know them
+  - type: textarea
+    id: why
+    attributes:
+      label: What would an agent ask with it?
+      placeholder: e.g. "Is the train from Paris to Lyon on time?"
+    validations:
+      required: true

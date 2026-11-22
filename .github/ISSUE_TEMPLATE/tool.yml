@@ -1,0 +1,14 @@
+name: Ask for a tool
+description: Something your agent cannot do alone, that a free deterministic tool could do.
+labels: [tool request]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What should the tool do?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example call and the answer you would expect
