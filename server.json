@@ -3,7 +3,7 @@
   "name": "com.boternity/boternity",
   "title": "BOTERNITY",
   "description": "Free MCP tools: weather, FX, quakes, holidays, service status, packages, CVEs, web, MCP audits.",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "websiteUrl": "https://boternity.com",
   "repository": {
     "url": "https://github.com/botcraftmarket/boternity-mcp",

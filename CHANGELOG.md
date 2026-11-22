@@ -2,6 +2,13 @@
 
 All notable changes to the hosted BOTERNITY MCP server (`https://boternity.com/api/public/v4/mcp`).
 
+## 2.2.1 · 22 November 2026
+
+- Lighter tool definitions: shorter descriptions and schemas, so `tools/list` costs agents less context. Same 42 tools, same names.
+- `serverInfo.version` now reports the real version.
+- Reminder: `check_business_day` is served by `get_public_holidays` with a `date`, and `get_data_feeds_status` by
+  `https://boternity.com/data/status.json`; both old names are still accepted.
+
 ## 2.2.0 · 22 November 2026
 
 - New fresh-data tools: `get_package_info` (500 most downloaded npm and PyPI packages), `get_service_status`

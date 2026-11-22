@@ -117,7 +117,11 @@ across sessions, for 30 days after last use.
 
 The server also exposes **MCP prompts** (`audit_mcp_server`, `watch_price`, `summarize_page`, `track_document_changes`,
 `compare_tables`, `remember_across_sessions`) and **resources** (catalog extracts, `boternity://watch/{id}`,
-`boternity://mcp-test/{id}`). Names from versions 1.x (`current_time`, `json_to_csv`, `data_stats`…) still work.
+`boternity://mcp-test/{id}`).
+
+**Older tool names still work**, they are just no longer listed: names from versions 1.x (`current_time`, `json_to_csv`,
+`data_stats`…), `check_business_day` (now `get_public_holidays` with a `date`), and `get_data_feeds_status` (now the open file
+[`/data/status.json`](https://boternity.com/data/status.json)).
 
 ## Try it
 
