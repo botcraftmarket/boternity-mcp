@@ -2,6 +2,7 @@
 
 [![MCP Index](https://boternity.com/mcp-index/badge.svg?name=com.boternity%2Fboternity)](https://boternity.com/mcp-index/server?name=com.boternity%2Fboternity)
 [![BOTERNITY MCP connector](https://glama.ai/mcp/connectors/com.boternity/boternity/badges/score.svg)](https://glama.ai/mcp/connectors/com.boternity/boternity)
+[![Indexed on TensorBlock MCP Index](https://mcp-index.tensorblock.co/v1/servers/github-botcraftmarket-boternity-mcp-1728ad22/badge.svg)](https://tensorblock.co/mcp/servers/github-botcraftmarket-boternity-mcp-1728ad22)
 [![MCP Registry](https://img.shields.io/badge/MCP%20Registry-com.boternity%2Fboternity-38e1d0)](https://registry.modelcontextprotocol.io/v0/servers?search=com.boternity)
 [![Tools](https://img.shields.io/badge/tools-42-38e1d0)](#tools-42)
 [![No key](https://img.shields.io/badge/API%20key-not%20needed-2ea44f)](#connect)
