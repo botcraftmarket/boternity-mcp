@@ -14,6 +14,14 @@ All notable changes to the hosted BOTERNITY MCP server (`https://boternity.com/a
 - New monthly report, State of the agent web: 97 major websites tested by an honest, declared agent, open data
   (CC BY 4.0, CSV and JSON): https://boternity.com/reports/agent-web/2026-11
 - New site navigation: every page in six sections, https://boternity.com/explore
+- Agent-ready leaderboard: the monthly panel plus sites whose owners opt in, re-tested weekly, with up / down /
+  stable arrows and an embeddable badge. A site can leave it with `boternity-leaderboard: no` in its `robots.txt`
+  or `llms.txt`. https://boternity.com/agent-check/leaderboard
+- Stricter agent-ready scoring (v2), also returned by `check_site_for_agents` (`scoring_version: 2`): the grade
+  now counts points earned out of 100: getting in (30), being understood (35), offering ways to act (35: MCP
+  server, OpenAPI description, A2A agent card, structured offers). 100 means perfect on every criterion. Every
+  listed site has a public page with its points per criterion and how to gain the missing ones:
+  https://boternity.com/agent-check/method
 - New "Suggest or ask" button on every page of boternity.com: send an idea, a tool request or a bug report straight
   to the team, e-mail optional. Requests for tools can still be opened as issues here.
 
