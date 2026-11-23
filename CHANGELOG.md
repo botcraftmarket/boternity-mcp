@@ -14,6 +14,13 @@ All notable changes to the hosted BOTERNITY MCP server (`https://boternity.com/a
 - New monthly report, State of the agent web: 97 major websites tested by an honest, declared agent, open data
   (CC BY 4.0, CSV and JSON): https://boternity.com/reports/agent-web/2026-11
 - New site navigation: every page in six sections, https://boternity.com/explore
+- New "Suggest or ask" button on every page of boternity.com: send an idea, a tool request or a bug report straight
+  to the team, e-mail optional. Requests for tools can still be opened as issues here.
+
+## 22 November 2026 (website)
+
+- Free down/up alerts for any server of the MCP Index: leave an e-mail (confirmed first) or an https webhook on the
+  server page and get one message when it goes down and one when it is back. https://boternity.com/mcp-weather
 
 ## 2.2.1 · 22 November 2026
 
