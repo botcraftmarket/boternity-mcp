@@ -2,6 +2,19 @@
 
 All notable changes to the hosted BOTERNITY MCP server (`https://boternity.com/api/public/v4/mcp`).
 
+## 23 November 2026
+
+- New tool `check_site_for_agents`: can an AI agent get into a website, understand it and act on it? Grade A to F
+  with concrete fixes, `robots.txt` read for 17 AI bots. Deterministic, at most 6 requests to the site, under the
+  declared user agent `BOTERNITY-AgentCheck/1.0`. Also on the web: https://boternity.com/agent-check
+- New tool `verify_ai_bot`: is that GPTBot, ClaudeBot or Googlebot really them? Checked only against the IP lists
+  and reverse DNS methods the operators publish; bots with no published method are reported as unverifiable.
+  Also on the web, with pasted access logs: https://boternity.com/bot-check
+- 44 tools in total. Descriptions tightened so `tools/list` stays under its context budget.
+- New monthly report, State of the agent web: 97 major websites tested by an honest, declared agent, open data
+  (CC BY 4.0, CSV and JSON): https://boternity.com/reports/agent-web/2026-11
+- New site navigation: every page in six sections, https://boternity.com/explore
+
 ## 2.2.1 · 22 November 2026
 
 - Lighter tool definitions: shorter descriptions and schemas, so `tools/list` costs agents less context. Same 42 tools, same names.
