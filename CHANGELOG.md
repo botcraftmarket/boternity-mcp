@@ -2,6 +2,16 @@
 
 All notable changes to the hosted BOTERNITY MCP server (`https://boternity.com/api/public/v4/mcp`).
 
+## 24 November 2026: one source for every description of the server
+
+- `llms.txt`, `/api/discovery`, `/api/public/v4/capabilities`, the A2A agent card, the website pages and this README are now
+  generated from the server's own code, and a test fails if any of them disagrees with `tools/list`. Fixed on the way:
+  `llms.txt` still presented the 11 old data tool names as MCP tools and said the catalog may be empty;
+  `/capabilities` listed 48 internal names instead of the 9 tools.
+- `GET /api/public/v4/capabilities` now gives `server_version` and `older_names.replaced_by`: every 1.x and 2.x tool name
+  with the 3.0.0 tool that replaces it (for example `get_weather` → `get_data` with `feed: weather`). Older names still work.
+- No change to the tools themselves or to their schemas.
+
 ## 24 November 2026: server 3.0.0, 9 tools
 
 - The MCP server lists **9 tools instead of 44**, with the same features: `read_page`, `check_site_for_agents`,

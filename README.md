@@ -58,21 +58,21 @@ curl -X POST https://boternity.com/api/public/v4/tools/get_data \
 
 Ready-made configs are in [`examples/`](examples).
 
+<!-- capabilities:start -->
 ## Tools (9)
 
-Version 3.0.0 lists **9 tools** instead of 44: the same features, grouped by job, so loading the tool list costs about
-**2,300 tokens** of an agent's context instead of 5,900. Every tool has MCP annotations and an `outputSchema`.
+Server 3.0.0 lists **9 tools**, grouped by job, so loading the tool list stays under **2,500 tokens** of an agent's context. Every tool has MCP annotations and an `outputSchema`.
 
 | Tool | What it does |
 | --- | --- |
 | `read_page` | Clean text of a public page (headings as Markdown), title, description, language, canonical URL, Open Graph, schema.org types, outline, links. robots.txt respected, cached, paginated. |
-| `check_site_for_agents` | Can an AI agent get into a website, understand it and act on it? Grade A to F with fixes, robots.txt read for 17 AI bots. |
-| `watch_page` | Re-read a page on a schedule and keep diffs, changed sections and keyword events; part of a page (CSS selector), webhook on change. `action`: `start` (returns an id), then `get`, `check_now` or `stop`. |
+| `check_site_for_agents` | Can an AI agent get into a website, understand it and act on it? Grade A to F with fixes (bot walls, robots.txt read for 17 AI bots, text without JavaScript, schema.org, llms.txt, forms, APIs). |
+| `watch_page` | Re-read a page on a schedule and keep diffs, changed sections and keyword events; part of a page (CSS selector), webhook on change. `action`: `start` (returns an id), then `get`, `check_now` or `stop` with that id. Useful because an agent cannot come back tomorrow on its own. |
 | `test_mcp_server` | Full audit of a remote MCP server out of 100: version negotiation, sessions, tools/list lint and token cost, ping, error codes, CORS, latency, optional real tool call. Call again with `report_id` for the JSON and Markdown report. |
 | `find_mcp_server` | The most reliable public MCP servers for a need (`{"need": "postgres"}`) from the nightly MCP Index; `server` for the live status of one server (up, slow, down); no argument for current incidents. |
-| `get_data` | Fresh public data with its source, license and update time. `feed` + `params`, see below. |
-| `notebook` | A private notebook per agent (secret token) that survives across sessions, 30 days after last use. `action`: `create`, `write`, `read`, `delete`. |
-| `process_data` | `operation`: `convert` (JSON ⇄ CSV ⇄ XML), `inspect_json` (validation with line and column, RFC 6901 pointer), `analyze_table` (per-column statistics), `clean_table`, `compare` (two tables by key, or two texts). |
+| `get_data` | Fresh public data with its source, license and update time: `feed` + `params` (feeds listed below). |
+| `notebook` | A private notebook per agent (secret token) that survives across sessions, 30 days after last use. `action`: `create`, `write`, `read`, `delete`. No personal data. |
+| `process_data` | `operation`: `convert` (JSON, CSV, XML), `inspect_json` (validation with line and column, RFC 6901 pointer), `analyze_table` (per-column statistics), `clean_table`, `compare` (two tables by key, or two texts). |
 | `time` | `operation`: `now` (any IANA timezone), `convert` (daylight saving aware), `duration`, `cron` (next runs). |
 
 ### `get_data` feeds
@@ -90,18 +90,25 @@ Version 3.0.0 lists **9 tools** instead of 44: the same features, grouped by job
 | `service_status` | Official status of 26 services (GitHub, OpenAI, Anthropic, Cloudflare, Vercel, npm, Discord…) | Status pages |
 | `ai_papers` | Newest arXiv papers in AI, ML, NLP, vision, robotics, agents, security, software engineering | arXiv |
 | `hacker_news` | Front page, best, Ask HN or Show HN, with points and links | Hacker News, every 30 min |
+| `feeds_status` | Freshness of every feed above (last update, stale or not) | BOTERNITY collectors |
 
-Example: `{"feed": "weather", "params": {"city": "Paris"}}`. An unknown parameter is refused with the list of the
-parameters that feed accepts.
+Example: `{"feed": "weather", "params": {"city": "Paris"}}`. An unknown parameter is refused with the list of the parameters that feed accepts.
 
-The server also exposes **MCP prompts** (`audit_mcp_server`, `watch_price`, `summarize_page`, `track_document_changes`,
-`compare_tables`, `remember_across_sessions`) and **resources** (catalog extracts, `boternity://watch/{id}`,
-`boternity://mcp-test/{id}`).
+The server also exposes **MCP prompts** (`audit_mcp_server`, `watch_price`, `summarize_page`, `track_document_changes`, `compare_tables`, `remember_across_sessions`) and **resources** (catalog extracts, `boternity://watch/{id}`, `boternity://mcp-test/{id}`).
 
-**Older tool names still work** (MCP, REST and A2A), they are just no longer listed: the 44 names of versions 2.x
-(`get_weather`, `create_notebook`, `convert_data`, `get_current_time`, `get_mcp_test`, `verify_ai_bot`, `encode_text`,
-`generate_uuid`, `parse_url`, `explain_http_status`, `search_catalog`, `request_resource`…) and of versions 1.x
-(`current_time`, `json_to_csv`, `data_stats`…). Nothing breaks for an existing client.
+### One set of tools, four ways in
+
+One set of 9 tools (server 3.0.0), four ways in. Every way lists the same 9 names; older names are accepted everywhere but listed nowhere.
+
+| Interface | Lists | Accepts |
+| --- | --- | --- |
+| MCP `https://boternity.com/api/public/v4/mcp` | `tools/list`: the 9 tools | `tools/call` with the 9 tools or an older name |
+| REST | `GET https://boternity.com/api/public/v4/tools`: the 9 tools | `POST https://boternity.com/api/public/v4/tools/{name}` with the 9 tools or an older name |
+| OpenAPI 3.1 `https://boternity.com/api/public/v4/openapi.json` | one operation per tool (9) | same as REST |
+| A2A `https://boternity.com/.well-known/agent-card.json` | 9 skills, same names | data part `{"skill", "arguments"}`, the 9 names or an older name |
+
+**Older tool names still work** (MCP `tools/call`, REST and A2A), they are just no longer listed: 59 names from versions 1.x and 2.x, for example `get_weather` → `get_data` with `feed: weather`, `create_notebook` → `notebook`, `convert_data` → `process_data`, `get_current_time` → `time`, `check_mcp_server_status` → `find_mcp_server`, `get_mcp_test` → `test_mcp_server`. Nothing breaks for an existing client. The full table, old name → tool that replaces it, is in `older_names` of `GET https://boternity.com/api/public/v4/capabilities`.
+<!-- capabilities:end -->
 
 ## Try it
 
