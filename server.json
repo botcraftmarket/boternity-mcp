@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.boternity/boternity",
   "title": "BOTERNITY",
-  "description": "Free MCP tools: weather, FX, quakes, holidays, service status, packages, CVEs, web, MCP audits.",
-  "version": "2.2.1",
+  "description": "9 free MCP tools: read and watch web pages, site and MCP audits, MCP directory, fresh data, memory.",
+  "version": "3.0.0",
   "websiteUrl": "https://boternity.com",
   "repository": {
     "url": "https://github.com/botcraftmarket/boternity-mcp",

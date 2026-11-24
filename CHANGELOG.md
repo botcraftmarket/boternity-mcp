@@ -2,6 +2,16 @@
 
 All notable changes to the hosted BOTERNITY MCP server (`https://boternity.com/api/public/v4/mcp`).
 
+## 24 November 2026: server 3.0.0, 9 tools
+
+- The MCP server lists **9 tools instead of 44**, with the same features: `read_page`, `check_site_for_agents`,
+  `watch_page`, `test_mcp_server`, `find_mcp_server`, `get_data` (all 11 data feeds), `notebook`, `process_data`,
+  `time`. Loading the tool list now costs about 2,300 tokens of an agent's context instead of 5,900: our own
+  measure of 6,500 public MCP servers found that the number of tools drives most of that cost
+  (https://boternity.com/reports/state-of-mcp-servers/2026-11#where-the-tokens-go).
+- Every tool now declares an `outputSchema`.
+- All older tool names (2.x and 1.x) still work over MCP, REST and A2A; they are just no longer listed.
+
 ## 23 November 2026
 
 - New tool `check_site_for_agents`: can an AI agent get into a website, understand it and act on it? Grade A to F

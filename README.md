@@ -4,7 +4,7 @@
 [![BOTERNITY MCP connector](https://glama.ai/mcp/connectors/com.boternity/boternity/badges/score.svg)](https://glama.ai/mcp/connectors/com.boternity/boternity)
 [![Indexed on TensorBlock MCP Index](https://mcp-index.tensorblock.co/v1/servers/github-botcraftmarket-boternity-mcp-1728ad22/badge.svg)](https://tensorblock.co/mcp/servers/github-botcraftmarket-boternity-mcp-1728ad22)
 [![MCP Registry](https://img.shields.io/badge/MCP%20Registry-com.boternity%2Fboternity-38e1d0)](https://registry.modelcontextprotocol.io/v0/servers?search=com.boternity)
-[![Tools](https://img.shields.io/badge/tools-42-38e1d0)](#tools-42)
+[![Tools](https://img.shields.io/badge/tools-9-38e1d0)](#tools-9)
 [![No key](https://img.shields.io/badge/API%20key-not%20needed-2ea44f)](#connect)
 
 BOTERNITY gives AI agents what they cannot do alone: **fresh public data with its source** (weather, exchange rates,
@@ -49,8 +49,8 @@ claude mcp add --transport http boternity https://boternity.com/api/public/v4/mc
 **Plain HTTP** (every tool is also a REST call)
 
 ```bash
-curl -X POST https://boternity.com/api/public/v4/tools/get_exchange_rates \
-  -H "Content-Type: application/json" -d '{"base": "EUR", "symbols": ["USD", "JPY"]}'
+curl -X POST https://boternity.com/api/public/v4/tools/get_data \
+  -H "Content-Type: application/json" -d '{"feed": "exchange_rates", "params": {"base": "EUR", "symbols": ["USD", "JPY"]}}'
 ```
 
 **A2A (Agent2Agent)**: agent card at `https://boternity.com/.well-known/agent-card.json`, JSON-RPC endpoint
@@ -58,71 +58,50 @@ curl -X POST https://boternity.com/api/public/v4/tools/get_exchange_rates \
 
 Ready-made configs are in [`examples/`](examples).
 
-## Tools (42)
+## Tools (9)
 
-### Fresh public data (11)
+Version 3.0.0 lists **9 tools** instead of 44: the same features, grouped by job, so loading the tool list costs about
+**2,300 tokens** of an agent's context instead of 5,900. Every tool has MCP annotations and an `outputSchema`.
 
-Collected and refreshed by BOTERNITY; every answer says where the data comes from, its license and when it was last updated.
+| Tool | What it does |
+| --- | --- |
+| `read_page` | Clean text of a public page (headings as Markdown), title, description, language, canonical URL, Open Graph, schema.org types, outline, links. robots.txt respected, cached, paginated. |
+| `check_site_for_agents` | Can an AI agent get into a website, understand it and act on it? Grade A to F with fixes, robots.txt read for 17 AI bots. |
+| `watch_page` | Re-read a page on a schedule and keep diffs, changed sections and keyword events; part of a page (CSS selector), webhook on change. `action`: `start` (returns an id), then `get`, `check_now` or `stop`. |
+| `test_mcp_server` | Full audit of a remote MCP server out of 100: version negotiation, sessions, tools/list lint and token cost, ping, error codes, CORS, latency, optional real tool call. Call again with `report_id` for the JSON and Markdown report. |
+| `find_mcp_server` | The most reliable public MCP servers for a need (`{"need": "postgres"}`) from the nightly MCP Index; `server` for the live status of one server (up, slow, down); no argument for current incidents. |
+| `get_data` | Fresh public data with its source, license and update time. `feed` + `params`, see below. |
+| `notebook` | A private notebook per agent (secret token) that survives across sessions, 30 days after last use. `action`: `create`, `write`, `read`, `delete`. |
+| `process_data` | `operation`: `convert` (JSON ⇄ CSV ⇄ XML), `inspect_json` (validation with line and column, RFC 6901 pointer), `analyze_table` (per-column statistics), `clean_table`, `compare` (two tables by key, or two texts). |
+| `time` | `operation`: `now` (any IANA timezone), `convert` (daylight saving aware), `duration`, `cron` (next runs). |
 
-| Tool | What it returns | Source, refresh |
+### `get_data` feeds
+
+| `feed` | What it returns | Source, refresh |
 | --- | --- | --- |
-| `get_weather` | Current weather, 7-day forecast, air quality and local time for about 250 major cities | Open-Meteo |
-| `get_exchange_rates` | Reference rates for about 30 currencies, today or any day of the last 90 days, any base | European Central Bank |
-| `get_earthquakes` | Recent earthquakes worldwide, by magnitude, time window and distance from a point | USGS, every 10 min |
-| `get_disaster_alerts` | Cyclones, floods, earthquakes, volcanoes, droughts, wildfires | GDACS (UN/EU) |
-| `get_public_holidays` | Holidays of 200 countries; with a date: is it a business day, and the next one | Public holiday calendars |
-| `get_trending_topics` | Most-read Wikipedia articles of the last full day, 16 languages | Wikimedia |
-| `get_exploited_vulnerabilities` | CVEs exploited in the wild: one CVE, a vendor or product, or the newest | CISA KEV, every 6 h |
-| `get_package_info` | Latest version, release date, license of the 500 most downloaded npm and PyPI packages | npm, PyPI |
-| `get_service_status` | Official status of 26 services (GitHub, OpenAI, Anthropic, Cloudflare, Vercel, npm, Discord…) | Status pages |
-| `get_new_ai_papers` | Newest arXiv papers in AI, ML, NLP, vision, robotics, agents, security, software engineering | arXiv |
-| `get_hacker_news` | Front page, best, Ask HN or Show HN, with points and links | Hacker News, every 30 min |
+| `weather` | Current weather, 7-day forecast, air quality and local time for about 250 major cities | Open-Meteo |
+| `exchange_rates` | Reference rates for about 30 currencies, today or any day of the last 90 days, any base | European Central Bank |
+| `earthquakes` | Recent earthquakes worldwide, by magnitude, time window and distance from a point | USGS, every 10 min |
+| `disaster_alerts` | Cyclones, floods, earthquakes, volcanoes, droughts, wildfires | GDACS (UN/EU) |
+| `public_holidays` | Holidays of 200 countries; with a `date`: is it a business day, and the next one | Public holiday calendars |
+| `trending_topics` | Most-read Wikipedia articles of the last full day, 16 languages | Wikimedia |
+| `exploited_vulnerabilities` | CVEs exploited in the wild: one CVE, a vendor or product, or the newest | CISA KEV, every 6 h |
+| `package_info` | Latest version, release date, license of the 500 most downloaded npm and PyPI packages | npm, PyPI |
+| `service_status` | Official status of 26 services (GitHub, OpenAI, Anthropic, Cloudflare, Vercel, npm, Discord…) | Status pages |
+| `ai_papers` | Newest arXiv papers in AI, ML, NLP, vision, robotics, agents, security, software engineering | arXiv |
+| `hacker_news` | Front page, best, Ask HN or Show HN, with points and links | Hacker News, every 30 min |
 
-### MCP ecosystem (4)
-
-| Tool | What it does |
-| --- | --- |
-| `find_mcp_server` | The most reliable public MCP servers for a need (`{"need": "postgres"}`), with endpoint and score, from the nightly MCP Index. |
-| `check_mcp_server_status` | Live MCP weather: is a public MCP server up, down, unstable or slow right now? |
-| `test_mcp_server`, `get_mcp_test` | Full audit of a remote MCP server out of 100: initialize, version negotiation, sessions, tools/list lint and token cost, ping, error codes, CORS, Origin, latency, optional real tool call. JSON and Markdown report. |
-
-### Web pages (5)
-
-| Tool | What it does |
-| --- | --- |
-| `read_page` | Clean text (headings as Markdown), title, description, language, canonical URL, Open Graph, schema.org types, outline, links. robots.txt respected, cached, paginated. |
-| `watch_page`, `get_watch`, `check_watch_now`, `stop_watch` | Re-read a page on a schedule and keep diffs, changed sections and keyword events. Watch part of a page (CSS selector), get a webhook POST on change. |
-
-### Memory (4)
-
-`create_notebook`, `write_note`, `read_notes`, `delete_note`: a private notebook per agent (secret token) that survives
-across sessions, for 30 days after last use.
-
-### Data (6)
-
-`convert_data` (JSON ⇄ CSV ⇄ XML), `inspect_json` (validation, RFC 6901 pointers), `analyze_table` (per-column statistics),
-`compare_tables` (rows added, removed, changed by key), `clean_table`, `compare_texts` (unified diff).
-
-### Time (4)
-
-`get_current_time`, `convert_time` (IANA timezones, daylight saving time), `compute_duration`, `list_cron_runs`.
-
-### Utilities (4)
-
-`encode_text` (Base64, URL, hashes), `generate_uuid`, `parse_url`, `explain_http_status` (reason phrase, specification, retry guidance).
-
-### Catalog and requests (4)
-
-`search_catalog`, `read_catalog_resource` (verified extracts of specifications), `request_resource` and
-`get_request_status` (ask for a tool or a resource you are missing: requests shape what gets built next).
+Example: `{"feed": "weather", "params": {"city": "Paris"}}`. An unknown parameter is refused with the list of the
+parameters that feed accepts.
 
 The server also exposes **MCP prompts** (`audit_mcp_server`, `watch_price`, `summarize_page`, `track_document_changes`,
 `compare_tables`, `remember_across_sessions`) and **resources** (catalog extracts, `boternity://watch/{id}`,
 `boternity://mcp-test/{id}`).
 
-**Older tool names still work**, they are just no longer listed: names from versions 1.x (`current_time`, `json_to_csv`,
-`data_stats`…), `check_business_day` (now `get_public_holidays` with a `date`), and `get_data_feeds_status` (now the open file
-[`/data/status.json`](https://boternity.com/data/status.json)).
+**Older tool names still work** (MCP, REST and A2A), they are just no longer listed: the 44 names of versions 2.x
+(`get_weather`, `create_notebook`, `convert_data`, `get_current_time`, `get_mcp_test`, `verify_ai_bot`, `encode_text`,
+`generate_uuid`, `parse_url`, `explain_http_status`, `search_catalog`, `request_resource`…) and of versions 1.x
+(`current_time`, `json_to_csv`, `data_stats`…). Nothing breaks for an existing client.
 
 ## Try it
 
