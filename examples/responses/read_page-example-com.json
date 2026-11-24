@@ -1,0 +1,48 @@
+{
+ "captured_at": "2026-11-24T13:03:12Z",
+ "request": {
+  "method": "POST",
+  "url": "https://boternity.com/api/public/v4/tools/read_page",
+  "body": {
+   "url": "https://example.com"
+  }
+ },
+ "result": {
+  "url": "https://example.com",
+  "fetched_at": "2026-11-24T13:03:12Z",
+  "status": "ok",
+  "http_status": 200,
+  "final_url": "https://example.com",
+  "content_type": "text/html",
+  "bytes": 577,
+  "elapsed_ms": 68,
+  "kind": "html",
+  "title": "Example Domain",
+  "lang": "en",
+  "description": null,
+  "canonical": null,
+  "open_graph": null,
+  "structured_data_types": null,
+  "selector": null,
+  "text": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.",
+  "text_length": 156,
+  "next_start_index": null,
+  "headings": [],
+  "links_count": 0,
+  "trust": {
+   "schema_version": "boternity.trust/1",
+   "source": "https://example.com",
+   "source_url": "https://example.com",
+   "observed_at": "2026-11-24T13:03:12Z",
+   "verified_at": null,
+   "verification_method": "Fetched over HTTPS as BOTERNITY, robots.txt respected, no JavaScript run; cached up to 10 minutes.",
+   "freshness_seconds": 0,
+   "data_status": "fresh",
+   "limitations": [
+    "Text of the page as served without JavaScript; BOTERNITY does not check whether the page is true."
+   ],
+   "method_url": "https://boternity.com/trust",
+   "report_error_url": "https://boternity.com/trust#report"
+  }
+ }
+}

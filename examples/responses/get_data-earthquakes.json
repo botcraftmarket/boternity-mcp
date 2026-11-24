@@ -1,0 +1,91 @@
+{
+ "captured_at": "2026-11-24T13:03:03Z",
+ "request": {
+  "method": "POST",
+  "url": "https://boternity.com/api/public/v4/tools/get_data",
+  "body": {
+   "feed": "earthquakes",
+   "params": {
+    "min_magnitude": 5,
+    "limit": 3
+   }
+  }
+ },
+ "result": {
+  "source": "USGS Earthquake Hazards Program",
+  "source_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php",
+  "license": "Public domain (U.S. Government)",
+  "attribution": "Source: U.S. Geological Survey (USGS)",
+  "updated_at": "2026-11-24T13:03:01Z",
+  "fetched_at": "2026-11-24T13:03:01Z",
+  "stale": false,
+  "count": 4,
+  "returned": 3,
+  "data": [
+   {
+    "id": "us6000ud73",
+    "magnitude": 5,
+    "magnitude_type": "mb",
+    "place": "24 km WNW of Piti Village, Guam",
+    "time": "2026-11-24T11:55:13Z",
+    "longitude": 144.4957,
+    "latitude": 13.5637,
+    "depth_km": 107.571,
+    "tsunami_flag": false,
+    "alert": null,
+    "felt_reports": null,
+    "significance": 385,
+    "type": "earthquake",
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ud73"
+   },
+   {
+    "id": "us6000ud6z",
+    "magnitude": 5.2,
+    "magnitude_type": "mb",
+    "place": "93 km WSW of Puerto Madero, Mexico",
+    "time": "2026-11-24T11:51:44Z",
+    "longitude": -93.2417,
+    "latitude": 14.442,
+    "depth_km": 35,
+    "tsunami_flag": false,
+    "alert": null,
+    "felt_reports": null,
+    "significance": 416,
+    "type": "earthquake",
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ud6z"
+   },
+   {
+    "id": "us6000ud6h",
+    "magnitude": 6.4,
+    "magnitude_type": "mww",
+    "place": "Mauritius - Reunion region",
+    "time": "2026-11-24T11:06:14Z",
+    "longitude": 65.6995,
+    "latitude": -17.7049,
+    "depth_km": 10,
+    "tsunami_flag": false,
+    "alert": "green",
+    "felt_reports": null,
+    "significance": 630,
+    "type": "earthquake",
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ud6h"
+   }
+  ],
+  "trust": {
+   "schema_version": "boternity.trust/1",
+   "source": "USGS Earthquake Hazards Program",
+   "source_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php",
+   "observed_at": "2026-11-24T13:03:01Z",
+   "verified_at": "2026-11-24T13:03:01Z",
+   "verification_method": "Fetched by a deterministic collector (no AI model) from the source over HTTPS on a fixed schedule; parsed and checked before replacing the previous copy; if a fetch fails the last good copy is kept and marked stale.",
+   "freshness_seconds": 2,
+   "data_status": "fresh",
+   "limitations": [
+    "Recent events are revised by USGS (magnitude, location) after first publication.",
+    "BOTERNITY checks that values come unchanged from the source, not that the source is right."
+   ],
+   "method_url": "https://boternity.com/trust",
+   "report_error_url": "https://boternity.com/trust#report"
+  }
+ }
+}

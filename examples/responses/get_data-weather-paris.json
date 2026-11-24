@@ -1,0 +1,108 @@
+{
+ "captured_at": "2026-11-24T13:03:03Z",
+ "request": {
+  "method": "POST",
+  "url": "https://boternity.com/api/public/v4/tools/get_data",
+  "body": {
+   "feed": "weather",
+   "params": {
+    "city": "Paris",
+    "days": 2
+   }
+  }
+ },
+ "result": {
+  "source": "Open-Meteo",
+  "source_url": "https://open-meteo.com/",
+  "license": "CC BY 4.0",
+  "attribution": "Weather data by Open-Meteo.com (CC BY 4.0)",
+  "updated_at": "2026-11-24T12:22:52Z",
+  "fetched_at": "2026-11-24T12:22:52Z",
+  "stale": false,
+  "units": {
+   "temperature": "°C",
+   "wind": "km/h",
+   "precipitation": "mm"
+  },
+  "data": {
+   "city": "Paris",
+   "country": "FR",
+   "region": "Île-de-France Region",
+   "latitude": 48.8534,
+   "longitude": 2.3488,
+   "timezone": "Europe/Paris",
+   "current": {
+    "time": "2026-11-24T13:15",
+    "condition": "overcast",
+    "weather_code": 3,
+    "temperature_c": 6.9,
+    "feels_like_c": 3.7,
+    "humidity_pct": 79,
+    "precipitation_mm": 0.0,
+    "cloud_cover_pct": 90,
+    "wind_kmh": 11.4,
+    "wind_gusts_kmh": 23.8,
+    "wind_direction_deg": 114,
+    "is_day": true
+   },
+   "forecast": [
+    {
+     "date": "2026-11-24",
+     "condition": "overcast",
+     "weather_code": 3,
+     "temperature_max_c": 7.6,
+     "temperature_min_c": 2.4,
+     "precipitation_mm": 0.0,
+     "precipitation_probability_pct": 0,
+     "wind_max_kmh": 13.9,
+     "uv_index_max": 1.5,
+     "sunrise": "2026-11-24T08:12",
+     "sunset": "2026-11-24T17:01"
+    },
+    {
+     "date": "2026-11-25",
+     "condition": "slight rain showers",
+     "weather_code": 80,
+     "temperature_max_c": 7.6,
+     "temperature_min_c": 4.7,
+     "precipitation_mm": 2.88,
+     "precipitation_probability_pct": 70,
+     "wind_max_kmh": 9.0,
+     "uv_index_max": 0.55,
+     "sunrise": "2026-11-25T08:14",
+     "sunset": "2026-11-25T17:00"
+    }
+   ],
+   "local_time": "2026-11-24T14:03:03+01:00",
+   "air_quality": {
+    "time": "2026-11-24T11:00",
+    "us_aqi": 66,
+    "european_aqi": 47,
+    "pm2_5_ugm3": 14.9,
+    "pm10_ugm3": 17.4,
+    "ozone_ugm3": 21.0,
+    "no2_ugm3": 36.5,
+    "uv_index": 0.4,
+    "us_aqi_level": "moderate"
+   },
+   "air_quality_source": "Air quality data by Open-Meteo.com (CC BY 4.0), based on Copernicus CAMS"
+  },
+  "trust": {
+   "schema_version": "boternity.trust/1",
+   "source": "Open-Meteo",
+   "source_url": "https://open-meteo.com/",
+   "observed_at": "2026-11-24T12:22:52Z",
+   "verified_at": "2026-11-24T12:22:52Z",
+   "verification_method": "Fetched by a deterministic collector (no AI model) from the source over HTTPS on a fixed schedule; parsed and checked before replacing the previous copy; if a fetch fails the last good copy is kept and marked stale.",
+   "freshness_seconds": 2411,
+   "data_status": "fresh",
+   "limitations": [
+    "Forecasts are model output, not observations.",
+    "About 250 major cities only.",
+    "BOTERNITY checks that values come unchanged from the source, not that the source is right."
+   ],
+   "method_url": "https://boternity.com/trust",
+   "report_error_url": "https://boternity.com/trust#report"
+  }
+ }
+}

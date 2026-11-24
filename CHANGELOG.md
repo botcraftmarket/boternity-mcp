@@ -2,6 +2,38 @@
 
 All notable changes to the hosted BOTERNITY MCP server (`https://boternity.com/api/public/v4/mcp`).
 
+## 24 November 2026: public change feed
+
+- https://boternity.com/changes, with Atom (`/changes.xml`) and JSON Feed (`/changes.json`, filter `?type=`): new public
+  MCP servers in the official registry, servers that became unavailable or came back, servers whose tool definitions
+  changed, new MCP protocol versions, agent-ready grade changes, BOTERNITY releases and method changes. Grouped by day,
+  from the real nightly checks.
+
+## 24 November 2026: open repository (clients, schemas, methodology, conformance tests)
+
+- Official clients in [`clients/`](clients/): Python (standard library only) and JavaScript (fetch, no dependency), one
+  method per tool, waiting built in for site checks and MCP audits, `is_fresh` / `isFresh` helpers for the trust block.
+- [`schemas/`](schemas/): every tool and the trust block as JSON Schemas, generated from the server code.
+- [`methodology/`](methodology/): how the MCP Index score, the agent-ready score, the MCP audit, the MCP weather and the
+  data feeds are produced, with their limits.
+- [`conformance/run.py`](conformance/run.py): reproducible checks of our public promises against the live service.
+- [`examples/responses/`](examples/responses/): real responses captured from the live service.
+
+## 24 November 2026: trust block in answers
+
+- Answers of `get_data`, `find_mcp_server`, `check_site_for_agents`, `test_mcp_server` (finished report) and `read_page`,
+  and the open files `/mcp-index/data.json` and `/mcp-weather.json`, carry a `trust` object: `schema_version`
+  (`boternity.trust/1`), `source`, `source_url`, `observed_at`, `verified_at`, `verification_method`,
+  `freshness_seconds`, `data_status`, `limitations`, `method_url`, `report_error_url`. It is part of the answer content:
+  tool schemas are unchanged.
+- New page https://boternity.com/trust: methods, what we do not do, error reports, dated history of method changes
+  (also https://boternity.com/trust/history.json).
+
+## 24 November 2026: open infrastructure for AI agents
+
+- BOTERNITY now presents itself as what it is: open infrastructure for AI agents. **Discover. Verify. Connect.
+  Remember.** The website, `llms.txt` and this README group the 9 tools under these four verbs. No change to the tools.
+
 ## 24 November 2026: one source for every description of the server
 
 - `llms.txt`, `/api/discovery`, `/api/public/v4/capabilities`, the A2A agent card, the website pages and this README are now

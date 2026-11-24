@@ -1,4 +1,8 @@
-# BOTERNITY · free remote MCP server for AI agents
+<!-- title:start -->
+# BOTERNITY — Open infrastructure for AI agents
+
+**Discover. Verify. Connect. Remember.**
+<!-- title:end -->
 
 [![MCP Index](https://boternity.com/mcp-index/badge.svg?name=com.boternity%2Fboternity)](https://boternity.com/mcp-index/server?name=com.boternity%2Fboternity)
 [![BOTERNITY MCP connector](https://glama.ai/mcp/connectors/com.boternity/boternity/badges/score.svg)](https://glama.ai/mcp/connectors/com.boternity/boternity)
@@ -7,9 +11,14 @@
 [![Tools](https://img.shields.io/badge/tools-9-38e1d0)](#tools-9)
 [![No key](https://img.shields.io/badge/API%20key-not%20needed-2ea44f)](#connect)
 
-BOTERNITY gives AI agents what they cannot do alone: **fresh public data with its source** (weather, exchange rates,
-earthquakes, holidays, CVEs, service status, packages, papers), **web pages read cleanly and watched over days**,
-**MCP servers audited and ranked**, data tools and **memory across sessions**.
+<!-- positioning:start -->
+Free, deterministic tools and open data that AI agents can call directly: no account, no key, no model behind the answers, and every score computed from real checks.
+
+- **Discover.** Find what exists: every public remote MCP server checked every night, any web page read cleanly, fresh open data with its source and license. (`find_mcp_server`, `read_page`, `get_data`)
+- **Verify.** Check before you trust: audit an MCP server out of 100, test a website the way an AI agent meets it, see which MCP servers are up right now. (`test_mcp_server`, `check_site_for_agents`)
+- **Connect.** One set of tools through every door: MCP, REST, OpenAPI 3.1 and A2A, plus data and time utilities that make answers usable. (`process_data`, `time`)
+- **Remember.** Keep state an agent cannot keep alone: a notebook that survives sessions, pages watched over days with diffs and webhooks. (`notebook`, `watch_page`)
+<!-- positioning:end -->
 
 - **No account, no API key, free.** Fair-use quotas; optional access keys for more.
 - **Deterministic.** No model behind it; nothing you send is executed.
@@ -152,6 +161,24 @@ Free, with CORS:
 
 See also the [Observatory](https://boternity.com/observatory), [which AI crawlers read the web](https://boternity.com/ai-crawlers)
 and the [public log](https://boternity.com/journal) of what changes on BOTERNITY each day.
+
+## Trust
+
+Answers that state a fact or a score (`get_data`, `find_mcp_server`, `check_site_for_agents`, `test_mcp_server`,
+`read_page`) carry a `trust` block: source, `observed_at`, `verified_at`, `verification_method`, `freshness_seconds`,
+`data_status`, `limitations`. Every score comes from a published, deterministic method: no AI model on the data, no paid
+ranking, no invented numbers. Methods, error reports and the dated history of every method change:
+https://boternity.com/trust
+
+## In this repository
+
+| Folder | What |
+| --- | --- |
+| [`clients/`](clients/) | Official clients, one file each, no dependency: Python 3.8+ and JavaScript (Node 18+, browsers) |
+| [`schemas/`](schemas/) | JSON Schemas generated from the server code: every tool, and the trust block |
+| [`methodology/`](methodology/) | How each score and dataset is produced: MCP Index, agent-ready score, MCP audit, MCP weather, data feeds |
+| [`conformance/`](conformance/) | `python conformance/run.py`: reproducible checks of our public promises against the live service |
+| [`examples/`](examples/) | Client configurations, `curl` calls and real responses captured from the live service (`examples/responses/`) |
 
 ## Security and privacy
 

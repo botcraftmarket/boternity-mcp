@@ -1,0 +1,21 @@
+{
+ "captured_at": "2026-11-24T13:03:12Z",
+ "request": {
+  "method": "POST",
+  "url": "https://boternity.com/api/public/v4/tools/time",
+  "body": {
+   "operation": "convert",
+   "datetime": "2026-03-29T01:30:00Z",
+   "timezone": "Europe/Paris"
+  }
+ },
+ "result": {
+  "input": "2026-03-29T01:30:00Z",
+  "to_timezone": "Europe/Paris",
+  "iso": "2026-03-29T03:30:00+02:00",
+  "unix": 1774747800,
+  "weekday": "Sunday",
+  "utc_offset": "+02:00",
+  "utc": "2026-03-29T01:30:00+00:00"
+ }
+}

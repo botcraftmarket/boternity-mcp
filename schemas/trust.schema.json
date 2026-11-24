@@ -1,0 +1,90 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://raw.githubusercontent.com/botcraftmarket/boternity-mcp/main/schemas/trust.schema.json",
+ "title": "BOTERNITY trust block",
+ "description": "Added to the content of answers that state facts or scores. Fields are only ever added, never renamed or removed, within one schema_version. Method: https://boternity.com/trust",
+ "type": "object",
+ "required": [
+  "schema_version",
+  "source",
+  "source_url",
+  "observed_at",
+  "verified_at",
+  "verification_method",
+  "freshness_seconds",
+  "data_status",
+  "limitations",
+  "method_url",
+  "report_error_url"
+ ],
+ "properties": {
+  "schema_version": {
+   "type": "string",
+   "enum": [
+    "boternity.trust/1"
+   ]
+  },
+  "source": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "Original publisher, or BOTERNITY for its own measurements."
+  },
+  "source_url": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "observed_at": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "When the data was collected or measured (ISO 8601 UTC)."
+  },
+  "verified_at": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "description": "When BOTERNITY last checked it; null if nothing beyond fetching."
+  },
+  "verification_method": {
+   "type": "string"
+  },
+  "freshness_seconds": {
+   "type": [
+    "integer",
+    "null"
+   ],
+   "minimum": 0,
+   "description": "Age of observed_at when answered."
+  },
+  "data_status": {
+   "type": "string",
+   "enum": [
+    "fresh",
+    "stale",
+    "live",
+    "nightly",
+    "pending",
+    "unavailable"
+   ]
+  },
+  "limitations": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "What the data does not tell you."
+  },
+  "method_url": {
+   "type": "string"
+  },
+  "report_error_url": {
+   "type": "string"
+  }
+ }
+}

@@ -1,0 +1,167 @@
+{
+ "captured_at": "2026-11-24T13:03:12Z",
+ "request": {
+  "method": "POST",
+  "url": "https://boternity.com/api/public/v4/tools/test_mcp_server",
+  "body": {
+   "report_id": "e2b8f357a97decd5f3c58016"
+  }
+ },
+ "result": {
+  "id": "e2b8f357a97decd5f3c58016",
+  "url": "https://boternity.com/api/public/v4/mcp",
+  "status": "done",
+  "report": {
+   "url": "https://boternity.com/api/public/v4/mcp",
+   "tested_at": "2026-11-24T13:03:10Z",
+   "compatible": true,
+   "score": 100,
+   "grade": "A",
+   "summary": {
+    "pass": 14,
+    "warn": 0,
+    "fail": 0,
+    "info": 1
+   },
+   "server": {
+    "name": "boternity",
+    "version": "3.0.0",
+    "protocol": "2025-06-18",
+    "capabilities": [
+     "prompts",
+     "resources",
+     "tools"
+    ],
+    "instructions": true
+   },
+   "tools": {
+    "count": 9,
+    "names": [
+     "read_page",
+     "check_site_for_agents",
+     "watch_page",
+     "test_mcp_server",
+     "find_mcp_server",
+     "get_data",
+     "notebook",
+     "process_data",
+     "time"
+    ],
+    "tokens_estimate": 2274,
+    "with_annotations": 9,
+    "with_output_schema": 9
+   },
+   "latency_ms": {
+    "min": 10,
+    "median": 104,
+    "p90": 146,
+    "max": 146
+   },
+   "checks": [
+    {
+     "check": "initialize",
+     "result": "pass",
+     "detail": "protocol 2025-06-18, transport response application/json",
+     "latency_ms": 125
+    },
+    {
+     "check": "session",
+     "result": "pass",
+     "detail": "stateful: Mcp-Session-Id issued"
+    },
+    {
+     "check": "initialized_notification",
+     "result": "pass",
+     "detail": "HTTP 202 (202 Accepted expected)",
+     "latency_ms": 120
+    },
+    {
+     "check": "tools_list",
+     "result": "pass",
+     "detail": "9 tools, schemas valid",
+     "latency_ms": 124
+    },
+    {
+     "check": "tool_quality",
+     "result": "pass",
+     "detail": "names, descriptions and parameters are well documented"
+    },
+    {
+     "check": "context_cost",
+     "result": "pass",
+     "detail": "tools/list costs about 2274 tokens of every agent's context"
+    },
+    {
+     "check": "ping",
+     "result": "pass",
+     "detail": "empty result",
+     "latency_ms": 34
+    },
+    {
+     "check": "unknown_method",
+     "result": "pass",
+     "detail": "error -32601 Method not found",
+     "latency_ms": 146
+    },
+    {
+     "check": "malformed_json",
+     "result": "pass",
+     "detail": "rejected cleanly",
+     "latency_ms": 10
+    },
+    {
+     "check": "resources_list",
+     "result": "pass",
+     "detail": "25 resources",
+     "latency_ms": 59
+    },
+    {
+     "check": "prompts_list",
+     "result": "pass",
+     "detail": "6 prompts",
+     "latency_ms": 104
+    },
+    {
+     "check": "version_negotiation",
+     "result": "pass",
+     "detail": "older client (2024-11-05) gets protocol 2024-11-05"
+    },
+    {
+     "check": "origin_check",
+     "result": "info",
+     "detail": "a foreign Origin header was accepted (fine for a public server; local servers must validate Origin)"
+    },
+    {
+     "check": "cors",
+     "result": "pass",
+     "detail": "Access-Control-Allow-Origin: *",
+     "latency_ms": 87
+    },
+    {
+     "check": "get_endpoint",
+     "result": "pass",
+     "detail": "405: no server-initiated stream (allowed)",
+     "latency_ms": 10
+    }
+   ],
+   "method": "Streamable HTTP (MCP 2025-06-18) from the outside: initialize, version negotiation, session, notifications/initialized, tools/list with schema lint and token cost, ping, error codes, resources and prompts when announced, CORS, Origin handling, GET behaviour, optional real tool call. Score: 100 minus 15 per failure and 5 per warning.",
+   "report_markdown": "# MCP server report: https://boternity.com/api/public/v4/mcp\n\n**Score 100/100 (grade A)**, compatible with MCP clients. Tested 2026-11-24T13:03:10Z by BOTERNITY.\n\nServer: boternity 3.0.0, protocol 2025-06-18, capabilities: prompts, resources, tools.\n\nTools: 9, about 2274 tokens of context for tools/list.\n\n| Check | Result | Detail |\n| --- | --- | --- |\n| initialize | PASS | protocol 2025-06-18, transport response application/json |\n| session | PASS | stateful: Mcp-Session-Id issued |\n| initialized_notification | PASS | HTTP 202 (202 Accepted expected) |\n| tools_list | PASS | 9 tools, schemas valid |\n| tool_quality | PASS | names, descriptions and parameters are well documented |\n| context_cost | PASS | tools/list costs about 2274 tokens of every agent's context |\n| ping | PASS | empty result |\n| unknown_method | PASS | error -32601 Method not found |\n| malformed_json | PASS | rejected cleanly |\n| resources_list | PASS | 25 resources |\n| prompts_list | PASS | 6 prompts |\n| version_negotiation | PASS | older client (2024-11-05) gets protocol 2024-11-05 |\n| origin_check | INFO | a foreign Origin header was accepted (fine for a public server; local servers must validate Origin) |\n| cors | PASS | Access-Control-Allow-Origin: * |\n| get_endpoint | PASS | 405: no server-initiated stream (allowed) |"
+  },
+  "trust": {
+   "schema_version": "boternity.trust/1",
+   "source": "BOTERNITY MCP audit (our own measurement)",
+   "source_url": "https://boternity.com/mcp-audit",
+   "observed_at": "2026-11-24T13:03:10Z",
+   "verified_at": "2026-11-24T13:03:10Z",
+   "verification_method": "Streamable HTTP tests from outside like an MCP client: initialize, version negotiation, session, tools/list lint and token cost, ping, error codes, CORS, latency, optional real tool call.",
+   "freshness_seconds": 2,
+   "data_status": "fresh",
+   "limitations": [
+    "One run from one location at one moment.",
+    "Tests protocol behaviour, not what the tools do."
+   ],
+   "method_url": "https://boternity.com/trust",
+   "report_error_url": "https://boternity.com/trust#report"
+  }
+ }
+}

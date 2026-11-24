@@ -1,0 +1,95 @@
+{
+ "captured_at": "2026-11-24T13:03:04Z",
+ "request": {
+  "method": "POST",
+  "url": "https://boternity.com/api/public/v4/tools/find_mcp_server",
+  "body": {
+   "need": "github",
+   "limit": 3
+  }
+ },
+ "result": {
+  "query": "github",
+  "topic": "github",
+  "matched": 13,
+  "results": [
+   {
+    "name": "ai.opencurrent/actions-latest",
+    "title": "GitHub Actions Version Check",
+    "description": "Check the latest major version of GitHub Actions before writing a workflow (e.g. checkout@v3).",
+    "url": "https://opencurrent.ai/mcp/actions",
+    "status": "ok",
+    "score": 92,
+    "grade": "A",
+    "tools": 2,
+    "tokens": 330,
+    "latency_ms": 400,
+    "availability_30d": 1.0,
+    "checks_30d": 3,
+    "protocol": "2025-06-18",
+    "website": "https://opencurrent.ai/mcp/actions",
+    "repository": null,
+    "checked": "2026-11-24",
+    "index_page": "https://boternity.com/mcp-index/server?name=ai.opencurrent%2Factions-latest"
+   },
+   {
+    "name": "ai.agentapigate/github-huggingface-arxiv-papers-repos-search-api-mcp",
+    "title": null,
+    "description": "GitHub trending repos, HuggingFace trending AI models & arXiv academic paper search remote MCP API.",
+    "url": "https://mcp.agentapigate.ai/mcp",
+    "status": "ok",
+    "score": 89,
+    "grade": "B",
+    "tools": 4,
+    "tokens": 385,
+    "latency_ms": 164,
+    "availability_30d": 1.0,
+    "checks_30d": 3,
+    "protocol": "2025-06-18",
+    "website": "https://agentapigate.ai",
+    "repository": null,
+    "checked": "2026-11-24",
+    "index_page": "https://boternity.com/mcp-index/server?name=ai.agentapigate%2Fgithub-huggingface-arxiv-papers-repos-search-api-mcp"
+   },
+   {
+    "name": "ai.agentapihub/github-huggingface-arxiv-papers-repos-search-api-mcp",
+    "title": null,
+    "description": "GitHub trending repos, HuggingFace trending AI models & arXiv academic paper search remote MCP API.",
+    "url": "https://mcp.agentapigate.ai/mcp",
+    "status": "ok",
+    "score": 89,
+    "grade": "B",
+    "tools": 4,
+    "tokens": 385,
+    "latency_ms": 165,
+    "availability_30d": 1.0,
+    "checks_30d": 3,
+    "protocol": "2025-06-18",
+    "website": "https://agentapigate.ai",
+    "repository": null,
+    "checked": "2026-11-24",
+    "index_page": "https://boternity.com/mcp-index/server?name=ai.agentapihub%2Fgithub-huggingface-arxiv-papers-repos-search-api-mcp"
+   }
+  ],
+  "index_updated": "2026-11-24",
+  "how_ranked": "Healthy servers first; servers built for the need (named in title or main description) before those that only mention it; then by BOTERNITY score out of 100 (reliability, protocol conformance, tool definitions, context cost), then 30-day availability, then latency. Checked every night from outside; no tool is called.",
+  "method": "https://boternity.com/mcp-index/method",
+  "comparison_page": "https://boternity.com/mcp-index/best/github",
+  "trust": {
+   "schema_version": "boternity.trust/1",
+   "source": "BOTERNITY MCP Index (nightly checks of the official MCP registry)",
+   "source_url": "https://boternity.com/mcp-index",
+   "observed_at": "2026-11-24T05:20:36Z",
+   "verified_at": "2026-11-24T05:20:36Z",
+   "verification_method": "Each server is contacted from outside like an MCP client (initialize, tools/list, ping, error handling), no tool is called; score out of 100 by the published method.",
+   "freshness_seconds": 27748,
+   "data_status": "nightly",
+   "limitations": [
+    "One check per night from one location (Europe); a server can change between checks.",
+    "The score measures protocol behaviour and tool definitions, not the quality or safety of what the tools do."
+   ],
+   "method_url": "https://boternity.com/trust",
+   "report_error_url": "https://boternity.com/trust#report"
+  }
+ }
+}

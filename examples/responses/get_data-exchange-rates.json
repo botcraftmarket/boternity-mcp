@@ -1,0 +1,55 @@
+{
+ "captured_at": "2026-11-24T13:03:03Z",
+ "request": {
+  "method": "POST",
+  "url": "https://boternity.com/api/public/v4/tools/get_data",
+  "body": {
+   "feed": "exchange_rates",
+   "params": {
+    "base": "EUR",
+    "symbols": [
+     "USD",
+     "GBP",
+     "JPY"
+    ]
+   }
+  }
+ },
+ "result": {
+  "source": "European Central Bank euro foreign exchange reference rates",
+  "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+  "license": "Free reuse with source acknowledgement (ECB)",
+  "attribution": "Source: European Central Bank. Reference rates are published for information purposes only.",
+  "updated_at": "2026-11-23T16:00:00+01:00",
+  "fetched_at": "2026-11-24T11:12:19Z",
+  "stale": false,
+  "note": "ECB reference rates (about 30 currencies, no crypto); weekends and holidays use the previous working day.",
+  "data": {
+   "base": "EUR",
+   "amount": 1,
+   "date": "2026-11-23",
+   "rates": {
+    "USD": 1.0939,
+    "GBP": 0.83673,
+    "JPY": 174.01
+   }
+  },
+  "trust": {
+   "schema_version": "boternity.trust/1",
+   "source": "European Central Bank euro foreign exchange reference rates",
+   "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+   "observed_at": "2026-11-24T11:12:19Z",
+   "verified_at": "2026-11-24T11:12:19Z",
+   "verification_method": "Fetched by a deterministic collector (no AI model) from the source over HTTPS on a fixed schedule; parsed and checked before replacing the previous copy; if a fetch fails the last good copy is kept and marked stale.",
+   "freshness_seconds": 6644,
+   "data_status": "fresh",
+   "limitations": [
+    "Reference rates for information, not transaction rates.",
+    "Published on ECB working days only.",
+    "BOTERNITY checks that values come unchanged from the source, not that the source is right."
+   ],
+   "method_url": "https://boternity.com/trust",
+   "report_error_url": "https://boternity.com/trust#report"
+  }
+ }
+}

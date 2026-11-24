@@ -1,0 +1,477 @@
+{
+ "_generated_by": "ops/github_build.py from the server code (do not edit by hand)",
+ "server_version": "3.0.0",
+ "tools": [
+  {
+   "name": "read_page",
+   "description": "Read a public web page as clean Markdown with metadata and outline. Paginated; robots.txt respected.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "Public http(s) URL."
+     },
+     "start_index": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Offset to continue a long page."
+     },
+     "max_length": {
+      "type": "integer",
+      "minimum": 500,
+      "maximum": 20000,
+      "description": "Default 8000."
+     },
+     "include_links": {
+      "type": "boolean",
+      "description": "Also return links."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "outputSchema": {
+    "type": "object"
+   },
+   "annotations": {
+    "title": "Read a web page",
+    "readOnlyHint": true,
+    "idempotentHint": true,
+    "openWorldHint": true
+   }
+  },
+  {
+   "name": "check_site_for_agents",
+   "description": "Can AI agents use a website? Grade A-F with fixes: bot walls, robots.txt, no-JS text, schema.org, forms, APIs.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "Site or page URL."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "outputSchema": {
+    "type": "object"
+   },
+   "annotations": {
+    "title": "Check a website for AI agents",
+    "readOnlyHint": true,
+    "idempotentHint": true,
+    "openWorldHint": true
+   }
+  },
+  {
+   "name": "watch_page",
+   "description": "Watch a public page and keep each diff. action start (url, optional selector, keywords, webhook) returns an id; then get, check_now or stop with that id.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "action": {
+      "type": "string",
+      "description": "Default start.",
+      "enum": [
+       "start",
+       "get",
+       "check_now",
+       "stop"
+      ]
+     },
+     "url": {
+      "type": "string",
+      "description": "Public http(s) URL."
+     },
+     "interval_minutes": {
+      "type": "integer",
+      "minimum": 60,
+      "maximum": 10080,
+      "description": "Default 360."
+     },
+     "selector": {
+      "type": "string",
+      "description": "CSS selector to watch, e.g. 'main .price'."
+     },
+     "keywords": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "Words to track."
+     },
+     "webhook_url": {
+      "type": "string",
+      "description": "https URL POSTed on change."
+     },
+     "id": {
+      "type": "string",
+      "description": "Watch id, for get, check_now, stop."
+     },
+     "history": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Diffs for get (default 5)."
+     }
+    }
+   },
+   "outputSchema": {
+    "type": "object"
+   },
+   "annotations": {
+    "title": "Watch a web page for changes",
+    "readOnlyHint": false,
+    "destructiveHint": true,
+    "idempotentHint": false,
+    "openWorldHint": true
+   }
+  },
+  {
+   "name": "test_mcp_server",
+   "description": "Audit a remote MCP server you may test: score /100 with fixes (schemas, tokens, CORS, latency). Returns report_id; call again with report_id for the full report.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "MCP endpoint URL."
+     },
+     "probe_tool": {
+      "type": "object",
+      "description": "Optional tool call to try.",
+      "properties": {
+       "name": {
+        "type": "string",
+        "description": "Tool name."
+       },
+       "arguments": {
+        "type": "object",
+        "description": "Its arguments."
+       }
+      },
+      "required": [
+       "name"
+      ]
+     },
+     "report_id": {
+      "type": "string",
+      "description": "Id of an earlier audit: returns its report."
+     }
+    }
+   },
+   "outputSchema": {
+    "type": "object"
+   },
+   "annotations": {
+    "title": "Audit an MCP server",
+    "readOnlyHint": false,
+    "destructiveHint": false,
+    "idempotentHint": false,
+    "openWorldHint": true
+   }
+  },
+  {
+   "name": "find_mcp_server",
+   "description": "Best public MCP servers for a need (postgres, github...) from nightly registry checks, or live status of one server. No argument: current incidents.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "need": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 200,
+      "description": "e.g. postgres, github, web search."
+     },
+     "limit": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20,
+      "description": "Default 5."
+     },
+     "min_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Minimum score."
+     },
+     "include_auth": {
+      "type": "boolean",
+      "description": "Also list servers needing sign-in."
+     },
+     "up_now": {
+      "type": "boolean",
+      "description": "With need: only servers up right now."
+     },
+     "server": {
+      "type": "string",
+      "description": "Registry name or URL: is it up, slow or down?"
+     }
+    }
+   },
+   "outputSchema": {
+    "type": "object"
+   },
+   "annotations": {
+    "title": "Find a reliable MCP server",
+    "readOnlyHint": true,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "get_data",
+   "description": "Fresh open data feeds: weather, exchange rates, earthquakes, disaster alerts, public holidays, trending topics, exploited CVEs, package versions, service status, AI papers, Hacker News.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "feed": {
+      "type": "string",
+      "description": "Data feed.",
+      "enum": [
+       "weather",
+       "exchange_rates",
+       "earthquakes",
+       "disaster_alerts",
+       "public_holidays",
+       "trending_topics",
+       "exploited_vulnerabilities",
+       "package_info",
+       "service_status",
+       "ai_papers",
+       "hacker_news",
+       "feeds_status"
+      ]
+     },
+     "params": {
+      "type": "object",
+      "description": "weather: city or latitude+longitude, days. exchange_rates: base, symbols[], amount, date. earthquakes: min_magnitude, hours, latitude, longitude, radius_km, sort, limit. disaster_alerts: type, min_alert_level, country, current_only, limit. public_holidays: country (ISO2, required), year, upcoming_only, date (business day check). trending_topics: language, limit. exploited_vulnerabilities: cve, query, since, ransomware_only, limit. package_info: ecosystem (npm|pypi), name. service_status: service (omit: incidents). ai_papers: category, query, limit. hacker_news: list (top|best|ask|show), limit."
+     }
+    },
+    "required": [
+     "feed"
+    ]
+   },
+   "outputSchema": {
+    "type": "object"
+   },
+   "annotations": {
+    "title": "Get fresh public data",
+    "readOnlyHint": true,
+    "idempotentHint": true,
+    "openWorldHint": true
+   }
+  },
+  {
+   "name": "notebook",
+   "description": "Memory across sessions. action create returns a secret notebook token; then write, read (one key, or list) or delete notes. Notes expire 30 days after last use.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "action": {
+      "type": "string",
+      "description": "Operation.",
+      "enum": [
+       "create",
+       "write",
+       "read",
+       "delete"
+      ]
+     },
+     "notebook": {
+      "type": "string",
+      "description": "Token from create_notebook."
+     },
+     "key": {
+      "type": "string",
+      "description": "Note name, e.g. todo (letters, digits, _.:/-)."
+     },
+     "value": {
+      "type": "string",
+      "description": "Note text (write, up to 8000 characters)."
+     },
+     "prefix": {
+      "type": "string",
+      "description": "Read: list names with this prefix."
+     }
+    },
+    "required": [
+     "action"
+    ]
+   },
+   "outputSchema": {
+    "type": "object"
+   },
+   "annotations": {
+    "title": "Private notebook memory",
+    "readOnlyHint": false,
+    "destructiveHint": true,
+    "idempotentHint": false,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "process_data",
+   "description": "Convert JSON/CSV/XML, validate or query JSON, analyze or clean a table, compare two tables or two texts. Errors give line and column.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "operation": {
+      "type": "string",
+      "description": "Operation.",
+      "enum": [
+       "convert",
+       "inspect_json",
+       "analyze_table",
+       "clean_table",
+       "compare"
+      ]
+     },
+     "data": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array"
+       }
+      ],
+      "description": "Document text, or table rows (array of flat objects)."
+     },
+     "from_format": {
+      "type": "string",
+      "description": "convert: source.",
+      "enum": [
+       "json",
+       "csv",
+       "xml"
+      ]
+     },
+     "to_format": {
+      "type": "string",
+      "description": "convert: target.",
+      "enum": [
+       "json",
+       "csv",
+       "xml"
+      ]
+     },
+     "pointer": {
+      "type": "string",
+      "description": "inspect_json: RFC 6901 pointer, e.g. /items/0."
+     },
+     "before": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array"
+       }
+      ],
+      "description": "compare: old text or rows."
+     },
+     "after": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "array"
+       }
+      ],
+      "description": "compare: new text or rows."
+     },
+     "key": {
+      "type": "string",
+      "description": "compare: key column of rows, e.g. id."
+     },
+     "options": {
+      "type": "object",
+      "description": "delimiter, pretty (convert); trim, empty_to_null, dedupe, parse_numbers, normalize_keys (clean_table, booleans)."
+     }
+    },
+    "required": [
+     "operation"
+    ]
+   },
+   "outputSchema": {
+    "type": "object"
+   },
+   "annotations": {
+    "title": "Convert, check and compare data",
+    "readOnlyHint": true,
+    "idempotentHint": true,
+    "openWorldHint": false
+   }
+  },
+  {
+   "name": "time",
+   "description": "Current time in any IANA timezone, timezone conversion (daylight saving aware), exact duration between two date-times, next runs of a cron expression.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "operation": {
+      "type": "string",
+      "description": "Default now.",
+      "enum": [
+       "now",
+       "convert",
+       "duration",
+       "cron"
+      ]
+     },
+     "timezone": {
+      "type": "string",
+      "description": "IANA timezone (target of convert), default UTC."
+     },
+     "datetime": {
+      "type": "string",
+      "description": "convert: e.g. 2026-03-29T01:30:00Z."
+     },
+     "from_timezone": {
+      "type": "string",
+      "description": "convert: if no offset."
+     },
+     "start": {
+      "type": "string",
+      "description": "duration: ISO 8601."
+     },
+     "end": {
+      "type": "string",
+      "description": "duration: ISO 8601."
+     },
+     "expression": {
+      "type": "string",
+      "description": "cron: e.g. */15 9-17 * * mon-fri."
+     },
+     "after": {
+      "type": "string",
+      "description": "cron: start (default now)."
+     },
+     "count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20,
+      "description": "cron: runs (default 5)."
+     }
+    }
+   },
+   "outputSchema": {
+    "type": "object"
+   },
+   "annotations": {
+    "title": "Time, timezones and cron",
+    "readOnlyHint": true,
+    "idempotentHint": false,
+    "openWorldHint": false
+   }
+  }
+ ]
+}

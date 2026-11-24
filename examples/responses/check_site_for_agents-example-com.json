@@ -1,0 +1,421 @@
+{
+ "captured_at": "2026-11-24T13:03:05Z",
+ "request": {
+  "method": "POST",
+  "url": "https://boternity.com/api/public/v4/tools/check_site_for_agents",
+  "body": {
+   "url": "https://example.com"
+  }
+ },
+ "result": {
+  "status": "done",
+  "url": "https://example.com/",
+  "checked_at": "2026-11-24T13:03:04Z",
+  "grade": "E",
+  "score": 36,
+  "agent_blocked": false,
+  "summary": "Grade E (36/100): AI agents can get in; an agent cannot really read the page and has almost nothing to act on.",
+  "top_fixes": [
+   {
+    "check": "Text readable without JavaScript",
+    "how_to_fix": "+8 points: put the main content in the HTML sent by the server (server-side rendering or static pages)."
+   },
+   {
+    "check": "API description for machines",
+    "how_to_fix": "+8 points: publish an OpenAPI description and announce it (<link rel=\"service-desc\">, /.well-known/api-catalog or llms.txt)."
+   },
+   {
+    "check": "MCP server",
+    "how_to_fix": "+8 points: offer an MCP server and announce it (/.well-known/mcp.json or llms.txt) so agents can act directly."
+   }
+  ],
+  "scoring_version": 2,
+  "criteria": [
+   [
+    "speed",
+    "enter",
+    8,
+    8,
+    "Answers quickly",
+    "Page delivered in 158 ms (8 points under 300 ms, 6 under 800 ms, 3 under 2 s).",
+    ""
+   ],
+   [
+    "https",
+    "enter",
+    6,
+    6,
+    "Secure connection (HTTPS)",
+    "Served over HTTPS.",
+    ""
+   ],
+   [
+    "robots_txt",
+    "enter",
+    2,
+    4,
+    "robots.txt present and readable",
+    "No robots.txt (allowed, but agents get no guidance).",
+    "+2 points: publish a plain-text /robots.txt (with your Sitemap: line)."
+   ],
+   [
+    "ai_search_agents",
+    "enter",
+    12,
+    12,
+    "AI search and assistant bots allowed",
+    "11 of 11 AI search and assistant bots (ChatGPT-User, Claude-User, PerplexityBot, OAI-SearchBot…) may read the page. Blocking training bots is your choice and costs nothing.",
+    ""
+   ],
+   [
+    "readable_text",
+    "understand",
+    0,
+    8,
+    "Text readable without JavaScript",
+    "About 26 words in the HTML itself (8 points from 300 words, 6 from 150, 3 from 40).",
+    "+8 points: put the main content in the HTML sent by the server (server-side rendering or static pages)."
+   ],
+   [
+    "title_description",
+    "understand",
+    2,
+    5,
+    "Title and description of good length",
+    "Title 14 characters (10-70 expected), description 0 characters (50-170 expected).",
+    "+3 points: write a <title> of 10 to 70 characters and a meta description of 50 to 170 characters."
+   ],
+   [
+    "language",
+    "understand",
+    2,
+    2,
+    "Language declared",
+    "lang=\"en\"",
+    ""
+   ],
+   [
+    "canonical",
+    "understand",
+    0,
+    2,
+    "Canonical address",
+    "No canonical link.",
+    "+2 points: add <link rel=\"canonical\" href=\"…\"> so agents know the reference address of the page."
+   ],
+   [
+    "headings",
+    "understand",
+    0,
+    3,
+    "Clear heading structure",
+    "0 <h1>, 0 <h2> (one <h1> and some <h2> expected).",
+    "+3 points: use exactly one <h1> for the page topic and <h2> headings for its sections."
+   ],
+   [
+    "images_alt",
+    "understand",
+    2,
+    2,
+    "Images described (alt text)",
+    "No images in the HTML.",
+    ""
+   ],
+   [
+    "structured_data",
+    "understand",
+    0,
+    7,
+    "Rich structured data (schema.org)",
+    "No schema.org data.",
+    "+7 points: add valid JSON-LD: Organization or WebSite, plus the types of what you offer (Product with Offer, LocalBusiness, Article, Event…), and BreadcrumbList or FAQPage."
+   ],
+   [
+    "sitemap",
+    "understand",
+    0,
+    3,
+    "XML sitemap",
+    "No readable XML sitemap.",
+    "+3 points: publish /sitemap.xml and declare it in robots.txt."
+   ],
+   [
+    "llms_txt",
+    "understand",
+    0,
+    3,
+    "llms.txt summary for AI",
+    "No /llms.txt.",
+    "+3 points: publish /llms.txt: a short Markdown guide to your site for language models (llmstxt.org)."
+   ],
+   [
+    "forms",
+    "act",
+    2,
+    4,
+    "Forms an agent can fill",
+    "No form on the page (2 of 4 points).",
+    "+2 points: label every form field (<label for> or aria-label); placeholders are not labels."
+   ],
+   [
+    "contact",
+    "act",
+    0,
+    4,
+    "Contact easy to find",
+    "No contact found on the page.",
+    "+4 points: link a contact page, or show an e-mail or phone."
+   ],
+   [
+    "search_action",
+    "act",
+    0,
+    3,
+    "Search agents can use",
+    "No search agents can use.",
+    "+3 points: declare a schema.org SearchAction (potentialAction) with your search URL template."
+   ],
+   [
+    "api",
+    "act",
+    0,
+    8,
+    "API description for machines",
+    "No API announced.",
+    "+8 points: publish an OpenAPI description and announce it (<link rel=\"service-desc\">, /.well-known/api-catalog or llms.txt)."
+   ],
+   [
+    "mcp",
+    "act",
+    0,
+    8,
+    "MCP server",
+    "No MCP server announced.",
+    "+8 points: offer an MCP server and announce it (/.well-known/mcp.json or llms.txt) so agents can act directly."
+   ],
+   [
+    "a2a",
+    "act",
+    0,
+    4,
+    "A2A agent card",
+    "No /.well-known/agent-card.json.",
+    "+4 points: publish an A2A agent card at /.well-known/agent-card.json."
+   ],
+   [
+    "offers",
+    "act",
+    0,
+    4,
+    "Offers as structured data (price, availability)",
+    "No structured offer.",
+    "+4 points: describe what you offer with schema.org Offer: price, priceCurrency and availability."
+   ]
+  ],
+  "leaderboard_opt_out": false,
+  "scenarios": [
+   {
+    "question": "Can an AI agent get in?",
+    "result": "warn",
+    "points": 28,
+    "max": 30,
+    "works": [
+     "The page opens for an agent",
+     "Answers quickly (8/8)",
+     "Secure connection (HTTPS) (6/6)",
+     "AI search and assistant bots allowed (12/12)"
+    ],
+    "notes": [
+     "Training bots are allowed (your choice, no penalty)."
+    ],
+    "problems": [
+     {
+      "label": "robots.txt present and readable",
+      "result": "warn",
+      "detail": "No robots.txt (allowed, but agents get no guidance).",
+      "how_to_fix": "+2 points: publish a plain-text /robots.txt (with your Sitemap: line).",
+      "points": 2,
+      "max": 4
+     }
+    ]
+   },
+   {
+    "question": "Can it understand the page?",
+    "result": "fail",
+    "points": 6,
+    "max": 35,
+    "works": [
+     "Language declared (2/2)",
+     "Images described (alt text) (2/2)"
+    ],
+    "notes": [
+     "No /llms.txt (an optional, emerging standard)."
+    ],
+    "problems": [
+     {
+      "label": "Text readable without JavaScript",
+      "result": "fail",
+      "detail": "About 26 words in the HTML itself (8 points from 300 words, 6 from 150, 3 from 40).",
+      "how_to_fix": "+8 points: put the main content in the HTML sent by the server (server-side rendering or static pages).",
+      "points": 0,
+      "max": 8
+     },
+     {
+      "label": "Title and description of good length",
+      "result": "warn",
+      "detail": "Title 14 characters (10-70 expected), description 0 characters (50-170 expected).",
+      "how_to_fix": "+3 points: write a <title> of 10 to 70 characters and a meta description of 50 to 170 characters.",
+      "points": 2,
+      "max": 5
+     },
+     {
+      "label": "Canonical address",
+      "result": "warn",
+      "detail": "No canonical link.",
+      "how_to_fix": "+2 points: add <link rel=\"canonical\" href=\"…\"> so agents know the reference address of the page.",
+      "points": 0,
+      "max": 2
+     },
+     {
+      "label": "Clear heading structure",
+      "result": "warn",
+      "detail": "0 <h1>, 0 <h2> (one <h1> and some <h2> expected).",
+      "how_to_fix": "+3 points: use exactly one <h1> for the page topic and <h2> headings for its sections.",
+      "points": 0,
+      "max": 3
+     },
+     {
+      "label": "Rich structured data (schema.org)",
+      "result": "warn",
+      "detail": "No schema.org data.",
+      "how_to_fix": "+7 points: add valid JSON-LD: Organization or WebSite, plus the types of what you offer (Product with Offer, LocalBusiness, Article, Event…), and BreadcrumbList or FAQPage.",
+      "points": 0,
+      "max": 7
+     },
+     {
+      "label": "XML sitemap",
+      "result": "warn",
+      "detail": "No readable XML sitemap.",
+      "how_to_fix": "+3 points: publish /sitemap.xml and declare it in robots.txt.",
+      "points": 0,
+      "max": 3
+     },
+     {
+      "label": "llms.txt summary for AI",
+      "result": "warn",
+      "detail": "No /llms.txt.",
+      "how_to_fix": "+3 points: publish /llms.txt: a short Markdown guide to your site for language models (llmstxt.org).",
+      "points": 0,
+      "max": 3
+     }
+    ]
+   },
+   {
+    "question": "Can it take action?",
+    "result": "warn",
+    "points": 2,
+    "max": 35,
+    "works": [],
+    "notes": [
+     "No form on this page.",
+     "No API description, MCP server or A2A agent card announced: agents can only use the web pages."
+    ],
+    "problems": [
+     {
+      "label": "Forms an agent can fill",
+      "result": "warn",
+      "detail": "No form on the page (2 of 4 points).",
+      "how_to_fix": "+2 points: label every form field (<label for> or aria-label); placeholders are not labels.",
+      "points": 2,
+      "max": 4
+     },
+     {
+      "label": "Contact easy to find",
+      "result": "warn",
+      "detail": "No contact found on the page.",
+      "how_to_fix": "+4 points: link a contact page, or show an e-mail or phone.",
+      "points": 0,
+      "max": 4
+     },
+     {
+      "label": "Search agents can use",
+      "result": "warn",
+      "detail": "No search agents can use.",
+      "how_to_fix": "+3 points: declare a schema.org SearchAction (potentialAction) with your search URL template.",
+      "points": 0,
+      "max": 3
+     },
+     {
+      "label": "API description for machines",
+      "result": "warn",
+      "detail": "No API announced.",
+      "how_to_fix": "+8 points: publish an OpenAPI description and announce it (<link rel=\"service-desc\">, /.well-known/api-catalog or llms.txt).",
+      "points": 0,
+      "max": 8
+     },
+     {
+      "label": "MCP server",
+      "result": "warn",
+      "detail": "No MCP server announced.",
+      "how_to_fix": "+8 points: offer an MCP server and announce it (/.well-known/mcp.json or llms.txt) so agents can act directly.",
+      "points": 0,
+      "max": 8
+     },
+     {
+      "label": "A2A agent card",
+      "result": "warn",
+      "detail": "No /.well-known/agent-card.json.",
+      "how_to_fix": "+4 points: publish an A2A agent card at /.well-known/agent-card.json.",
+      "points": 0,
+      "max": 4
+     },
+     {
+      "label": "Offers as structured data (price, availability)",
+      "result": "warn",
+      "detail": "No structured offer.",
+      "how_to_fix": "+4 points: describe what you offer with schema.org Offer: price, priceCurrency and availability.",
+      "points": 0,
+      "max": 4
+     }
+    ]
+   }
+  ],
+  "ai_bots_blocked": [],
+  "ai_bots_allowed": [
+   "GPTBot",
+   "OAI-SearchBot",
+   "ChatGPT-User",
+   "ClaudeBot",
+   "Claude-SearchBot",
+   "Claude-User",
+   "PerplexityBot",
+   "Perplexity-User",
+   "Google-Extended",
+   "Googlebot",
+   "Bingbot",
+   "Applebot-Extended",
+   "Meta-ExternalAgent",
+   "CCBot",
+   "Amazonbot",
+   "DuckAssistBot",
+   "MistralAI-User"
+  ],
+  "report_page": "https://boternity.com/agent-check?url=https://example.com/",
+  "trust": {
+   "schema_version": "boternity.trust/1",
+   "source": "BOTERNITY AgentCheck (our own measurement)",
+   "source_url": "https://boternity.com/agent-check/method",
+   "observed_at": "2026-11-24T13:03:04Z",
+   "verified_at": "2026-11-24T13:03:04Z",
+   "verification_method": "Deterministic visit (no AI model): up to 6 requests as BOTERNITY-AgentCheck/1.0, robots.txt respected, no JavaScript run; graded with the published scoring.",
+   "freshness_seconds": 1,
+   "data_status": "fresh",
+   "limitations": [
+    "One visit from one location; a site can answer other agents, IP addresses or browsers differently.",
+    "Content that needs JavaScript is not seen, on purpose: many agents do not run it."
+   ],
+   "method_url": "https://boternity.com/trust",
+   "report_error_url": "https://boternity.com/trust#report"
+  }
+ }
+}

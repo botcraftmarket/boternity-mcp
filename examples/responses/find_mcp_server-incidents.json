@@ -1,0 +1,102 @@
+{
+ "captured_at": "2026-11-24T13:03:04Z",
+ "request": {
+  "method": "POST",
+  "url": "https://boternity.com/api/public/v4/tools/find_mcp_server",
+  "body": {}
+ },
+ "result": {
+  "available": true,
+  "generated_at": 1795525012,
+  "watched": 192,
+  "counts": {
+   "down": 0,
+   "unstable": 2,
+   "slow": 2,
+   "up": 188,
+   "unknown": 0
+  },
+  "page": "https://boternity.com/mcp-weather",
+  "trouble": [
+   {
+    "name": "ai.polemia/quiz",
+    "title": "Polemia",
+    "url": "https://polemia.ai/mcp",
+    "score": 100,
+    "grade": "A",
+    "state": "unstable",
+    "since": 1795525009,
+    "reason": "http_5xx",
+    "last_check": 1795525009,
+    "last_ok": 1795524393,
+    "baseline_ms": 128,
+    "uptime_24h": 0.989,
+    "uptime_7d": 0.989,
+    "incidents_7d": 0
+   },
+   {
+    "name": "com.mariadb/mariadb-docs",
+    "title": "MariaDB Documentation",
+    "url": "https://mariadb.com/docs/~gitbook/mcp",
+    "score": 85,
+    "grade": "B",
+    "state": "unstable",
+    "since": 1795524409,
+    "reason": "not_mcp",
+    "last_check": 1795524409,
+    "last_ok": 1795523797,
+    "baseline_ms": 350,
+    "uptime_24h": 0.989,
+    "uptime_7d": 0.994,
+    "incidents_7d": 0
+   },
+   {
+    "name": "app.openkrill/agent-trace",
+    "title": "Agent Trace Check",
+    "url": "https://agenttrace.openkrill.app/mcp",
+    "score": 100,
+    "grade": "A",
+    "state": "slow",
+    "last_check": 1795525010,
+    "last_ok": 1795525010,
+    "latency_ms": 1772,
+    "baseline_ms": 163,
+    "uptime_24h": 0.989,
+    "uptime_7d": 0.994,
+    "incidents_7d": 0
+   },
+   {
+    "name": "app.openkrill/cve",
+    "title": "CVE Risk Check",
+    "url": "https://cve.openkrill.app/mcp",
+    "score": 97,
+    "grade": "A",
+    "state": "slow",
+    "last_check": 1795525010,
+    "last_ok": 1795525010,
+    "latency_ms": 1901,
+    "baseline_ms": 163,
+    "uptime_24h": 1.0,
+    "uptime_7d": 1.0,
+    "incidents_7d": 0
+   }
+  ],
+  "advice": "Pass server to check one server, or need to get servers that are up right now for a topic.",
+  "trust": {
+   "schema_version": "boternity.trust/1",
+   "source": "BOTERNITY MCP weather (live checks of watched servers)",
+   "source_url": "https://boternity.com/mcp-weather",
+   "observed_at": "2026-11-24T12:56:52Z",
+   "verified_at": "2026-11-24T12:56:52Z",
+   "verification_method": "One MCP initialize request to each watched server about every 20 minutes (no tool called); down after 2 failures in a row, slow at 3 times its usual latency and at least 1.5 s.",
+   "freshness_seconds": 372,
+   "data_status": "live",
+   "limitations": [
+    "About 190 watched servers only (best of each topic and servers people asked for).",
+    "Answering initialize does not prove every tool works."
+   ],
+   "method_url": "https://boternity.com/trust",
+   "report_error_url": "https://boternity.com/trust#report"
+  }
+ }
+}
