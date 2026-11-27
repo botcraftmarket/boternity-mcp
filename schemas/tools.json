@@ -44,13 +44,20 @@
   },
   {
    "name": "check_site_for_agents",
-   "description": "Can AI agents use a website? Grade A-F with fixes: bot walls, robots.txt, no-JS text, schema.org, forms, APIs.",
+   "description": "Can AI agents use a site, or buy from a shop? Grade A-F, fixes.",
    "inputSchema": {
     "type": "object",
     "properties": {
      "url": {
       "type": "string",
-      "description": "Site or page URL."
+      "description": "Site URL."
+     },
+     "profile": {
+      "type": "string",
+      "enum": [
+       "site",
+       "shop"
+      ]
      }
     },
     "required": [
@@ -179,7 +186,7 @@
   },
   {
    "name": "find_mcp_server",
-   "description": "Best public MCP servers for a need (postgres, github...) from nightly registry checks, or live status of one server. No argument: current incidents.",
+   "description": "Best public MCP servers for a need from nightly registry checks, or live status of one server. No argument: current incidents.",
    "inputSchema": {
     "type": "object",
     "properties": {
@@ -187,7 +194,7 @@
       "type": "string",
       "minLength": 2,
       "maxLength": 200,
-      "description": "e.g. postgres, github, web search."
+      "description": "e.g. postgres, web search."
      },
      "limit": {
       "type": "integer",
@@ -198,12 +205,29 @@
      "min_score": {
       "type": "integer",
       "minimum": 0,
-      "maximum": 100,
-      "description": "Minimum score."
+      "maximum": 100
      },
      "include_auth": {
       "type": "boolean",
       "description": "Also list servers needing sign-in."
+     },
+     "sort": {
+      "type": "string",
+      "enum": [
+       "best",
+       "lightest"
+      ],
+      "description": "lightest: fewest context tokens (grade A/B)."
+     },
+     "client": {
+      "type": "string",
+      "enum": [
+       "claude",
+       "chatgpt",
+       "cursor",
+       "vscode"
+      ],
+      "description": "Only servers it can add."
      },
      "up_now": {
       "type": "boolean",
@@ -211,7 +235,7 @@
      },
      "server": {
       "type": "string",
-      "description": "Registry name or URL: is it up, slow or down?"
+      "description": "Registry name or URL: up, slow or down?"
      }
     }
    },
@@ -227,7 +251,7 @@
   },
   {
    "name": "get_data",
-   "description": "Fresh open data feeds: weather, exchange rates, earthquakes, disaster alerts, public holidays, trending topics, exploited CVEs, package versions, service status, AI papers, Hacker News.",
+   "description": "Fresh open data feeds: weather, exchange rates, earthquakes, disaster alerts, public holidays, trending topics, exploited CVEs, package versions, service status, AI papers, Hacker News, and key_numbers: BOTERNITY's own citable numbers on the MCP ecosystem.",
    "inputSchema": {
     "type": "object",
     "properties": {
@@ -246,12 +270,13 @@
        "service_status",
        "ai_papers",
        "hacker_news",
+       "key_numbers",
        "feeds_status"
       ]
      },
      "params": {
       "type": "object",
-      "description": "weather: city or latitude+longitude, days. exchange_rates: base, symbols[], amount, date. earthquakes: min_magnitude, hours, latitude, longitude, radius_km, sort, limit. disaster_alerts: type, min_alert_level, country, current_only, limit. public_holidays: country (ISO2, required), year, upcoming_only, date (business day check). trending_topics: language, limit. exploited_vulnerabilities: cve, query, since, ransomware_only, limit. package_info: ecosystem (npm|pypi), name. service_status: service (omit: incidents). ai_papers: category, query, limit. hacker_news: list (top|best|ask|show), limit."
+      "description": "weather: city or latitude+longitude, days. exchange_rates: base, symbols[], amount, date. earthquakes: min_magnitude, hours, latitude, longitude, radius_km, sort, limit. disaster_alerts: type, min_alert_level, country, current_only, limit. public_holidays: country (ISO2, required), year, upcoming_only, date (business day check). trending_topics: language, limit. exploited_vulnerabilities: cve, query, since, ransomware_only, limit. package_info: ecosystem (npm|pypi), name. service_status: service (omit: incidents). ai_papers: category, query, limit. hacker_news: list (top|best|ask|show), limit. key_numbers: group or id (omit: all)."
      }
     },
     "required": [
@@ -286,7 +311,7 @@
      },
      "notebook": {
       "type": "string",
-      "description": "Token from create_notebook."
+      "description": "Token from action create."
      },
      "key": {
       "type": "string",

@@ -99,11 +99,12 @@ Server 3.0.0 lists **9 tools**, grouped by job, so loading the tool list stays u
 | `service_status` | Official status of 26 services (GitHub, OpenAI, Anthropic, Cloudflare, Vercel, npm, Discord…) | Status pages |
 | `ai_papers` | Newest arXiv papers in AI, ML, NLP, vision, robotics, agents, security, software engineering | arXiv |
 | `hacker_news` | Front page, best, Ask HN or Show HN, with points and links | Hacker News, every 30 min |
+| `key_numbers` | BOTERNITY's own citable numbers: health of every public MCP server, AI crawlers, MCP clients; each with date, method and permalink (`group` or `id`) | BOTERNITY measurements, CC BY 4.0, hourly |
 | `feeds_status` | Freshness of every feed above (last update, stale or not) | BOTERNITY collectors |
 
 Example: `{"feed": "weather", "params": {"city": "Paris"}}`. An unknown parameter is refused with the list of the parameters that feed accepts.
 
-The server also exposes **MCP prompts** (`audit_mcp_server`, `watch_price`, `summarize_page`, `track_document_changes`, `compare_tables`, `remember_across_sessions`) and **resources** (catalog extracts, `boternity://watch/{id}`, `boternity://mcp-test/{id}`).
+The server also exposes **MCP prompts** (`audit_mcp_server`, `watch_price`, `summarize_page`, `track_document_changes`, `compare_tables`, `remember_across_sessions`, `choose_mcp_server`, `is_mcp_server_up`, `agent_ready_site`, `mcp_ecosystem_numbers`) and **resources** (catalog extracts, `boternity://watch/{id}`, `boternity://mcp-test/{id}`).
 
 ### One set of tools, four ways in
 
@@ -116,7 +117,7 @@ One set of 9 tools (server 3.0.0), four ways in. Every way lists the same 9 name
 | OpenAPI 3.1 `https://boternity.com/api/public/v4/openapi.json` | one operation per tool (9) | same as REST |
 | A2A `https://boternity.com/.well-known/agent-card.json` | 9 skills, same names | data part `{"skill", "arguments"}`, the 9 names or an older name |
 
-**Older tool names still work** (MCP `tools/call`, REST and A2A), they are just no longer listed: 59 names from versions 1.x and 2.x, for example `get_weather` → `get_data` with `feed: weather`, `create_notebook` → `notebook`, `convert_data` → `process_data`, `get_current_time` → `time`, `check_mcp_server_status` → `find_mcp_server`, `get_mcp_test` → `test_mcp_server`. Nothing breaks for an existing client. The full table, old name → tool that replaces it, is in `older_names` of `GET https://boternity.com/api/public/v4/capabilities`.
+**Older tool names still work** (MCP `tools/call`, REST and A2A), they are just no longer listed: 60 names from versions 1.x and 2.x, for example `get_weather` → `get_data` with `feed: weather`, `create_notebook` → `notebook`, `convert_data` → `process_data`, `get_current_time` → `time`, `check_mcp_server_status` → `find_mcp_server`, `get_mcp_test` → `test_mcp_server`. Nothing breaks for an existing client. The full table, old name → tool that replaces it, is in `older_names` of `GET https://boternity.com/api/public/v4/capabilities`.
 <!-- capabilities:end -->
 
 ## Try it

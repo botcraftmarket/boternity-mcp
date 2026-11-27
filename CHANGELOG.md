@@ -2,6 +2,18 @@
 
 All notable changes to the hosted BOTERNITY MCP server (`https://boternity.com/api/public/v4/mcp`).
 
+## 27 November 2026: shop check for AI shopping agents
+
+- `check_site_for_agents` takes an optional `profile`: `site` (default, unchanged) or `shop`. With `shop`, it answers
+  "can AI shopping agents find, understand and buy from this online shop?": robots.txt for `OAI-SearchBot`, `Googlebot`
+  and `Storebot-Google`, product pages in the sitemap, schema.org `Product` / `Offer` data (price, availability,
+  identifiers, shipping, returns) and the Universal Commerce Protocol profile at `/.well-known/ucp`. Points out of 100
+  (find 30, understand 40, buy 30), deterministic, at most 6 read-only requests, never a cart, an account or a payment;
+  no grade when no product page can be read. The Agentic Commerce Protocol is not graded: it is not visible from outside
+  a shop. Page and method: https://boternity.com/agent-check/shop
+- Still 9 tools. `schemas/tools.json` and the README tools section regenerated from the server code (they also catch up
+  with changes already live: `find_mcp_server` sorting, new MCP prompts, the `key_numbers` feed).
+
 ## 24 November 2026: public change feed
 
 - https://boternity.com/changes, with Atom (`/changes.xml`) and JSON Feed (`/changes.json`, filter `?type=`): new public
